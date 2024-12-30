@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "ba5ba5c8-9c92-448a-bb1f-1e4103c3f817",
+		"name": "FikriOmar_API Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20251392",
+		"_collection_link": "https://speeding-shuttle-409727.postman.co/workspace/My-Workspace~54ee130d-1f8d-40be-8b47-1f6977e4e603/collection/20251392-ba5ba5c8-9c92-448a-bb1f-1e4103c3f817?action=share&source=collection_link&creator=20251392"
+	},
+	"item": [
+		{
+			"name": "API Authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.test(\"Status Code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Verify access token isn't null\", () => {\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('accessToken');\r",
+							"    pm.expect(responseJson.accessToken).to.not.equals('');\r",
+							"    pm.environment.set('token', responseJson.accessToken);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"clientName\": \"{{name}}\",\n   \"clientEmail\": \"{{email}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/api-clients/",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"api-clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.test(\"Status Code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Response message status is OK\", () => {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/status",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.test(\"Status Code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Verify all values in the response are correct\", () => {\r",
+							"    pm.expect(responseJson).to.be.an('object');\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('id');\r",
+							"    pm.expect(responseJson.id).to.equal(1);\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('name');\r",
+							"    pm.expect(responseJson.name).to.equal(\"The Russian\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('author');\r",
+							"    pm.expect(responseJson.author).to.equal(\"James Patterson and James O. Born\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('isbn');\r",
+							"    pm.expect(responseJson.isbn).to.equal(\"1780899475\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('type');\r",
+							"    pm.expect(responseJson.type).to.equal(\"fiction\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('price');\r",
+							"    pm.expect(responseJson.price).to.equal(12.98);\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('current-stock');\r",
+							"    pm.expect(responseJson[\"current-stock\"]).to.equal(12);\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('available');\r",
+							"    pm.expect(responseJson.available).to.equal(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/books/1",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.test(\"Status Code is 201\", () => {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Verify the 'created' value in the response message is true\", () => {\r",
+							"    pm.expect(responseJson).to.be.an('object');\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('created');\r",
+							"    pm.expect(responseJson.created).to.equal(true);\r",
+							"});\r",
+							"pm.test(\"Verify the 'orderId' value in the response message is not null\", () => {\r",
+							"    pm.expect(responseJson).to.be.an('object');\r",
+							"    pm.expect(responseJson).to.haveOwnProperty('orderId');\r",
+							"    pm.expect(responseJson.orderId).not.to.equal('');\r",
+							"    pm.environment.set('orderId', responseJson.orderId);\r",
+							"    pm.environment.set('orderID', responseJson.orderId);\r",
+							"    pm.environment.set('bookId', JSON.parse(pm.request.body.raw).bookId);\r",
+							"    pm.environment.set('customerName', JSON.parse(pm.request.body.raw).customerName);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bookId\": 1,\n  \"customerName\": \"Nini\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/orders",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.test(\"Status Code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Verify all values in the response message are correct\", () => {\r",
+							"    pm.expect(responseJson.id).to.equal(pm.environment.get(\"orderId\"));\r",
+							"    pm.expect(responseJson.bookId).to.equal(pm.environment.get(\"bookId\"));\r",
+							"    pm.expect(responseJson.customerName).to.equal(pm.environment.get(\"customerName\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/orders/{{orderID}}",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"orders",
+						"{{orderID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Code is 204\", () => {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/orders/{{orderID}}",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"orders",
+						"{{orderID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

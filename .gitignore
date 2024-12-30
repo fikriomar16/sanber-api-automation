@@ -1,0 +1,9 @@
+node_modules
+.idea
+.vscode
+.DS_STORE
+newman
+#make it sure clean after clone
+!collections/FikriOmar.postman_collection.json
+!environtments/FikriOmar-env.json
+!scripts/FikriOmar-api.js

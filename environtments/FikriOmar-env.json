@@ -1,0 +1,51 @@
+{
+	"id": "b850e7b6-bf51-40a8-a09a-5c185557baff",
+	"name": "FikriOmar_API Project",
+	"values": [
+		{
+			"key": "name",
+			"value": "Omar",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "email",
+			"value": "hajec88554@evnft.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "orderID",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "orderId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "bookId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "customerName",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-12-30T15:19:33.088Z",
+	"_postman_exported_using": "Postman/11.23.3"
+}
